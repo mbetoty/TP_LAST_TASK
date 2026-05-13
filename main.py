@@ -63,7 +63,6 @@ def upload_to_vk_s3(file_name):
 if __name__ == "__main__":
     if not WEATHER_API_KEY or not VK_ACCESS_KEY or not VK_SECRET_KEY:
         print("❌ Ошибка: Ключи доступа не найдены в переменных окружения!")
-        print("На GitHub это исправится через настройки Secrets.")
     else:
         avg = get_weather()
         if avg is not None:
