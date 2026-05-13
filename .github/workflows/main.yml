@@ -1,0 +1,27 @@
+name: Weather Processor CI
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        env:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          VK_ACCESS_KEY: ${{ secrets.VK_ACCESS_KEY }}
+          VK_SECRET_KEY: ${{ secrets.VK_SECRET_KEY }}
+        run: python main.py
